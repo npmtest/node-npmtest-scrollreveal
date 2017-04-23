@@ -1,0 +1,2807 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-scrollreveal/node_modules/scrollreveal/dist/scrollreveal.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-scrollreveal">npmtest-scrollreveal (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-scrollreveal/node_modules/scrollreveal/dist/scrollreveal.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">9.06% <small>(30 / 331)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 207)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">2.08% <small>(1 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">9.09% <small>(30 / 330)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-scrollreveal/node_modules/scrollreveal/dist/</a> &#187; scrollreveal.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/////    /////    /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+/////             /////    /////
+/////             /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+         /////    /////
+         /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+/////    /////    /////    /////
+&nbsp;
+/**
+ * ScrollReveal
+ * ------------
+ * Version : 3.3.4
+ * Website : scrollrevealjs.org
+ * Repo    : github.com/jlmakes/scrollreveal.js
+ * Author  : Julian Lloyd (@jlmakes)
+ */
+&nbsp;
+;(function () {
+  'use strict'
+&nbsp;
+  var sr
+  var _requestAnimationFrame
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function ScrollReveal (config) {</span>
+    // Support instantiation without the `new` keyword.
+<span class="cstat-no" title="statement not covered" >    if (typeof this === 'undefined' || Object.getPrototypeOf(this) !== ScrollReveal.prototype) {</span>
+<span class="cstat-no" title="statement not covered" >      return new ScrollReveal(config)</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    sr = this </span>// Save reference to instance.
+<span class="cstat-no" title="statement not covered" >    sr.version = '3.3.4'</span>
+<span class="cstat-no" title="statement not covered" >    sr.tools = new Tools() </span>// *required utilities
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (sr.isSupported()) {</span>
+<span class="cstat-no" title="statement not covered" >      sr.tools.extend(sr.defaults, config || {})</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      sr.defaults.container = _resolveContainer(sr.defaults)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      sr.store = {</span>
+        elements: {},
+        containers: []
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      sr.sequences = {}</span>
+<span class="cstat-no" title="statement not covered" >      sr.history = []</span>
+<span class="cstat-no" title="statement not covered" >      sr.uid = 0</span>
+<span class="cstat-no" title="statement not covered" >      sr.initialized = false</span>
+    } else <span class="cstat-no" title="statement not covered" >if (typeof console !== 'undefined' &amp;&amp; console !== null) {</span>
+      // Note: IE9 only supports console if devtools are open.
+<span class="cstat-no" title="statement not covered" >      console.log('ScrollReveal is not supported in this browser.')</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return sr</span>
+  }
+&nbsp;
+  /**
+   * Configuration
+   * -------------
+   * This object signature can be passed directly to the ScrollReveal constructor,
+   * or as the second argument of the `reveal()` method.
+   */
+&nbsp;
+  ScrollReveal.prototype.defaults = {
+    // 'bottom', 'left', 'top', 'right'
+    origin: 'bottom',
+&nbsp;
+    // Can be any valid CSS distance, e.g. '5rem', '10%', '20vw', etc.
+    distance: '20px',
+&nbsp;
+    // Time in milliseconds.
+    duration: 500,
+    delay: 0,
+&nbsp;
+    // Starting angles in degrees, will transition from these values to 0 in all axes.
+    rotate: { x: 0, y: 0, z: 0 },
+&nbsp;
+    // Starting opacity value, before transitioning to the computed opacity.
+    opacity: 0,
+&nbsp;
+    // Starting scale value, will transition from this value to 1
+    scale: 0.9,
+&nbsp;
+    // Accepts any valid CSS easing, e.g. 'ease', 'ease-in-out', 'linear', etc.
+    easing: 'cubic-bezier(0.6, 0.2, 0.1, 1)',
+&nbsp;
+    // `&lt;html&gt;` is the default reveal container. You can pass either:
+    // DOM Node, e.g. document.querySelector('.fooContainer')
+    // Selector, e.g. '.fooContainer'
+    container: window.document.documentElement,
+&nbsp;
+    // true/false to control reveal animations on mobile.
+    mobile: true,
+&nbsp;
+    // true:  reveals occur every time elements become visible
+    // false: reveals occur once as elements become visible
+    reset: false,
+&nbsp;
+    // 'always' — delay for all reveal animations
+    // 'once'   — delay only the first time reveals occur
+    // 'onload' - delay only for animations triggered by first load
+    useDelay: 'always',
+&nbsp;
+    // Change when an element is considered in the viewport. The default value
+    // of 0.20 means 20% of an element must be visible for its reveal to occur.
+    viewFactor: 0.2,
+&nbsp;
+    // Pixel values that alter the container boundaries.
+    // e.g. Set `{ top: 48 }`, if you have a 48px tall fixed toolbar.
+    // --
+    // Visual Aid: https://scrollrevealjs.org/assets/viewoffset.png
+    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 },
+&nbsp;
+    // Callbacks that fire for each triggered element reveal, and reset.
+    beforeReveal: <span class="fstat-no" title="function not covered" >function (domEl) {</span>},
+    beforeReset: <span class="fstat-no" title="function not covered" >function (domEl) {</span>},
+&nbsp;
+    // Callbacks that fire for each completed element reveal, and reset.
+    afterReveal: <span class="fstat-no" title="function not covered" >function (domEl) {</span>},
+    afterReset: <span class="fstat-no" title="function not covered" >function (domEl) {</span>}
+  }
+&nbsp;
+  /**
+   * Check if client supports CSS Transform and CSS Transition.
+   * @return {boolean}
+   */
+<span class="cstat-no" title="statement not covered" >  ScrollReveal.prototype.isSupported = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >    var style = document.documentElement.style</span>
+<span class="cstat-no" title="statement not covered" >    return 'WebkitTransition' in style &amp;&amp; 'WebkitTransform' in style ||</span>
+      'transition' in style &amp;&amp; 'transform' in style
+  }
+&nbsp;
+  /**
+   * Creates a reveal set, a group of elements that will animate when they
+   * become visible. If [interval] is provided, a new sequence is created
+   * that will ensure elements reveal in the order they appear in the DOM.
+   *
+   * @param {Node|NodeList|string} [target]   The node, node list or selector to use for animation.
+   * @param {Object}               [config]   Override the defaults for this reveal set.
+   * @param {number}               [interval] Time between sequenced element animations (milliseconds).
+   * @param {boolean}              [sync]     Used internally when updating reveals for async content.
+   *
+   * @return {Object} The current ScrollReveal instance.
+   */
+<span class="cstat-no" title="statement not covered" >  ScrollReveal.prototype.reveal = <span class="fstat-no" title="function not covered" >function (target, config, interval, sync) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var container</span>
+<span class="cstat-no" title="statement not covered" >    var elements</span>
+<span class="cstat-no" title="statement not covered" >    var elem</span>
+<span class="cstat-no" title="statement not covered" >    var elemId</span>
+<span class="cstat-no" title="statement not covered" >    var sequence</span>
+<span class="cstat-no" title="statement not covered" >    var sequenceId</span>
+&nbsp;
+    // No custom configuration was passed, but a sequence interval instead.
+    // let’s shuffle things around to make sure everything works.
+<span class="cstat-no" title="statement not covered" >    if (config !== undefined &amp;&amp; typeof config === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >      interval = config</span>
+<span class="cstat-no" title="statement not covered" >      config = {}</span>
+    } else <span class="cstat-no" title="statement not covered" >if (config === undefined || config === null) {</span>
+<span class="cstat-no" title="statement not covered" >      config = {}</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    container = _resolveContainer(config)</span>
+<span class="cstat-no" title="statement not covered" >    elements = _getRevealElements(target, container)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!elements.length) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('ScrollReveal: reveal on "' + target + '" failed, no elements found.')</span>
+<span class="cstat-no" title="statement not covered" >      return sr</span>
+    }
+&nbsp;
+    // Prepare a new sequence if an interval is passed.
+<span class="cstat-no" title="statement not covered" >    if (interval &amp;&amp; typeof interval === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >      sequenceId = _nextUid()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      sequence = sr.sequences[sequenceId] = {</span>
+        id: sequenceId,
+        interval: interval,
+        elemIds: [],
+        active: false
+      }
+    }
+&nbsp;
+    // Begin main loop to configure ScrollReveal elements.
+<span class="cstat-no" title="statement not covered" >    for (var i = 0; i &lt; elements.length; i++) {</span>
+      // Check if the element has already been configured and grab it from the store.
+<span class="cstat-no" title="statement not covered" >      elemId = elements[i].getAttribute('data-sr-id')</span>
+<span class="cstat-no" title="statement not covered" >      if (elemId) {</span>
+<span class="cstat-no" title="statement not covered" >        elem = sr.store.elements[elemId]</span>
+      } else {
+        // Otherwise, let’s do some basic setup.
+<span class="cstat-no" title="statement not covered" >        elem = {</span>
+          id: _nextUid(),
+          domEl: elements[i],
+          seen: false,
+          revealing: false
+        }
+<span class="cstat-no" title="statement not covered" >        elem.domEl.setAttribute('data-sr-id', elem.id)</span>
+      }
+&nbsp;
+      // Sequence only setup
+<span class="cstat-no" title="statement not covered" >      if (sequence) {</span>
+<span class="cstat-no" title="statement not covered" >        elem.sequence = {</span>
+          id: sequence.id,
+          index: sequence.elemIds.length
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        sequence.elemIds.push(elem.id)</span>
+      }
+&nbsp;
+      // New or existing element, it’s time to update its configuration, styles,
+      // and send the updates to our store.
+<span class="cstat-no" title="statement not covered" >      _configure(elem, config, container)</span>
+<span class="cstat-no" title="statement not covered" >      _style(elem)</span>
+<span class="cstat-no" title="statement not covered" >      _updateStore(elem)</span>
+&nbsp;
+      // We need to make sure elements are set to visibility: visible, even when
+      // on mobile and `config.mobile === false`, or if unsupported.
+<span class="cstat-no" title="statement not covered" >      if (sr.tools.isMobile() &amp;&amp; !elem.config.mobile || !sr.isSupported()) {</span>
+<span class="cstat-no" title="statement not covered" >        elem.domEl.setAttribute('style', elem.styles.inline)</span>
+<span class="cstat-no" title="statement not covered" >        elem.disabled = true</span>
+      } else <span class="cstat-no" title="statement not covered" >if (!elem.revealing) {</span>
+        // Otherwise, proceed normally.
+<span class="cstat-no" title="statement not covered" >        elem.domEl.setAttribute('style',</span>
+          elem.styles.inline +
+          elem.styles.transform.initial
+        )
+      }
+    }
+&nbsp;
+    // Each `reveal()` is recorded so that when calling `sync()` while working
+    // with asynchronously loaded content, it can re-trace your steps but with
+    // all your new elements now in the DOM.
+&nbsp;
+    // Since `reveal()` is called internally by `sync()`, we don’t want to
+    // record or intiialize each reveal during syncing.
+<span class="cstat-no" title="statement not covered" >    if (!sync &amp;&amp; sr.isSupported()) {</span>
+<span class="cstat-no" title="statement not covered" >      _record(target, config, interval)</span>
+&nbsp;
+      // We push initialization to the event queue using setTimeout, so that we can
+      // give ScrollReveal room to process all reveal calls before putting things into motion.
+      // --
+      // Philip Roberts - What the heck is the event loop anyway? (JSConf EU 2014)
+      // https://www.youtube.com/watch?v=8aGhZQkoFbQ
+<span class="cstat-no" title="statement not covered" >      if (sr.initTimeout) {</span>
+<span class="cstat-no" title="statement not covered" >        window.clearTimeout(sr.initTimeout)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      sr.initTimeout = window.setTimeout(_init, 0)</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return sr</span>
+  }
+&nbsp;
+  /**
+   * Re-runs `reveal()` for each record stored in history, effectively capturing
+   * any content loaded asynchronously that matches existing reveal set targets.
+   * @return {Object} The current ScrollReveal instance.
+   */
+<span class="cstat-no" title="statement not covered" >  ScrollReveal.prototype.sync = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (sr.history.length &amp;&amp; sr.isSupported()) {</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; sr.history.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        var record = sr.history[i]</span>
+<span class="cstat-no" title="statement not covered" >        sr.reveal(record.target, record.config, record.interval, true)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      _init()</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      console.log('ScrollReveal: sync failed, no reveals found.')</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return sr</span>
+  }
+&nbsp;
+  /**
+   * Private Methods
+   * ---------------
+   */
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _resolveContainer (config) {</span>
+<span class="cstat-no" title="statement not covered" >    if (config &amp;&amp; config.container) {</span>
+<span class="cstat-no" title="statement not covered" >      if (typeof config.container === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >        return window.document.documentElement.querySelector(config.container)</span>
+      } else <span class="cstat-no" title="statement not covered" >if (sr.tools.isNode(config.container)) {</span>
+<span class="cstat-no" title="statement not covered" >        return config.container</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        console.log('ScrollReveal: invalid container "' + config.container + '" provided.')</span>
+<span class="cstat-no" title="statement not covered" >        console.log('ScrollReveal: falling back to default container.')</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return sr.defaults.container</span>
+  }
+&nbsp;
+  /**
+   * check to see if a node or node list was passed in as the target,
+   * otherwise query the container using target as a selector.
+   *
+   * @param {Node|NodeList|string} [target]    client input for reveal target.
+   * @param {Node}                 [container] parent element for selector queries.
+   *
+   * @return {array} elements to be revealed.
+   */
+<span class="fstat-no" title="function not covered" >  function _getRevealElements (target, container) {</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof target === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >      return Array.prototype.slice.call(container.querySelectorAll(target))</span>
+    } else <span class="cstat-no" title="statement not covered" >if (sr.tools.isNode(target)) {</span>
+<span class="cstat-no" title="statement not covered" >      return [target]</span>
+    } else <span class="cstat-no" title="statement not covered" >if (sr.tools.isNodeList(target)) {</span>
+<span class="cstat-no" title="statement not covered" >      return Array.prototype.slice.call(target)</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return []</span>
+  }
+&nbsp;
+  /**
+   * A consistent way of creating unique IDs.
+   * @returns {number}
+   */
+<span class="fstat-no" title="function not covered" >  function _nextUid () {</span>
+<span class="cstat-no" title="statement not covered" >    return ++sr.uid</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _configure (elem, config, container) {</span>
+    // If a container was passed as a part of the config object,
+    // let’s overwrite it with the resolved container passed in.
+<span class="cstat-no" title="statement not covered" >    if (config.container) <span class="cstat-no" title="statement not covered" >config.container = container</span></span>
+    // If the element hasn’t already been configured, let’s use a clone of the
+    // defaults extended by the configuration passed as the second argument.
+<span class="cstat-no" title="statement not covered" >    if (!elem.config) {</span>
+<span class="cstat-no" title="statement not covered" >      elem.config = sr.tools.extendClone(sr.defaults, config)</span>
+    } else {
+      // Otherwise, let’s use a clone of the existing element configuration extended
+      // by the configuration passed as the second argument.
+<span class="cstat-no" title="statement not covered" >      elem.config = sr.tools.extendClone(elem.config, config)</span>
+    }
+&nbsp;
+    // Infer CSS Transform axis from origin string.
+<span class="cstat-no" title="statement not covered" >    if (elem.config.origin === 'top' || elem.config.origin === 'bottom') {</span>
+<span class="cstat-no" title="statement not covered" >      elem.config.axis = 'Y'</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      elem.config.axis = 'X'</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _style (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    var computed = window.getComputedStyle(elem.domEl)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!elem.styles) {</span>
+<span class="cstat-no" title="statement not covered" >      elem.styles = {</span>
+        transition: {},
+        transform: {},
+        computed: {}
+      }
+&nbsp;
+      // Capture any existing inline styles, and add our visibility override.
+      // --
+      // See section 4.2. in the Documentation:
+      // https://github.com/jlmakes/scrollreveal.js#42-improve-user-experience
+<span class="cstat-no" title="statement not covered" >      elem.styles.inline = elem.domEl.getAttribute('style') || ''</span>
+<span class="cstat-no" title="statement not covered" >      elem.styles.inline += '; visibility: visible; '</span>
+&nbsp;
+      // grab the elements existing opacity.
+<span class="cstat-no" title="statement not covered" >      elem.styles.computed.opacity = computed.opacity</span>
+&nbsp;
+      // grab the elements existing transitions.
+<span class="cstat-no" title="statement not covered" >      if (!computed.transition || computed.transition === 'all 0s ease 0s') {</span>
+<span class="cstat-no" title="statement not covered" >        elem.styles.computed.transition = ''</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        elem.styles.computed.transition = computed.transition + ', '</span>
+      }
+    }
+&nbsp;
+    // Create transition styles
+<span class="cstat-no" title="statement not covered" >    elem.styles.transition.instant = _generateTransition(elem, 0)</span>
+<span class="cstat-no" title="statement not covered" >    elem.styles.transition.delayed = _generateTransition(elem, elem.config.delay)</span>
+&nbsp;
+    // Generate transform styles, first with the webkit prefix.
+<span class="cstat-no" title="statement not covered" >    elem.styles.transform.initial = ' -webkit-transform:'</span>
+<span class="cstat-no" title="statement not covered" >    elem.styles.transform.target = ' -webkit-transform:'</span>
+<span class="cstat-no" title="statement not covered" >    _generateTransform(elem)</span>
+&nbsp;
+    // And again without any prefix.
+<span class="cstat-no" title="statement not covered" >    elem.styles.transform.initial += 'transform:'</span>
+<span class="cstat-no" title="statement not covered" >    elem.styles.transform.target += 'transform:'</span>
+<span class="cstat-no" title="statement not covered" >    _generateTransform(elem)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _generateTransition (elem, delay) {</span>
+<span class="cstat-no" title="statement not covered" >    var config = elem.config</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return '-webkit-transition: ' + elem.styles.computed.transition +</span>
+      '-webkit-transform ' + config.duration / 1000 + 's ' +
+      config.easing + ' ' +
+      delay / 1000 + 's, opacity ' +
+      config.duration / 1000 + 's ' +
+      config.easing + ' ' +
+      delay / 1000 + 's; ' +
+&nbsp;
+      'transition: ' + elem.styles.computed.transition +
+      'transform ' + config.duration / 1000 + 's ' +
+      config.easing + ' ' +
+      delay / 1000 + 's, opacity ' +
+      config.duration / 1000 + 's ' +
+      config.easing + ' ' +
+      delay / 1000 + 's; '
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _generateTransform (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    var config = elem.config</span>
+<span class="cstat-no" title="statement not covered" >    var cssDistance</span>
+<span class="cstat-no" title="statement not covered" >    var transform = elem.styles.transform</span>
+&nbsp;
+    // Let’s make sure our our pixel distances are negative for top and left.
+    // e.g. origin = 'top' and distance = '25px' starts at `top: -25px` in CSS.
+<span class="cstat-no" title="statement not covered" >    if (config.origin === 'top' || config.origin === 'left') {</span>
+<span class="cstat-no" title="statement not covered" >      cssDistance = /^-/.test(config.distance)</span>
+        ? config.distance.substr(1)
+        : '-' + config.distance
+    } else {
+<span class="cstat-no" title="statement not covered" >      cssDistance = config.distance</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (parseInt(config.distance)) {</span>
+<span class="cstat-no" title="statement not covered" >      transform.initial += ' translate' + config.axis + '(' + cssDistance + ')'</span>
+<span class="cstat-no" title="statement not covered" >      transform.target += ' translate' + config.axis + '(0)'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (config.scale) {</span>
+<span class="cstat-no" title="statement not covered" >      transform.initial += ' scale(' + config.scale + ')'</span>
+<span class="cstat-no" title="statement not covered" >      transform.target += ' scale(1)'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (config.rotate.x) {</span>
+<span class="cstat-no" title="statement not covered" >      transform.initial += ' rotateX(' + config.rotate.x + 'deg)'</span>
+<span class="cstat-no" title="statement not covered" >      transform.target += ' rotateX(0)'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (config.rotate.y) {</span>
+<span class="cstat-no" title="statement not covered" >      transform.initial += ' rotateY(' + config.rotate.y + 'deg)'</span>
+<span class="cstat-no" title="statement not covered" >      transform.target += ' rotateY(0)'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (config.rotate.z) {</span>
+<span class="cstat-no" title="statement not covered" >      transform.initial += ' rotateZ(' + config.rotate.z + 'deg)'</span>
+<span class="cstat-no" title="statement not covered" >      transform.target += ' rotateZ(0)'</span>
+    }
+<span class="cstat-no" title="statement not covered" >    transform.initial += '; opacity: ' + config.opacity + ';'</span>
+<span class="cstat-no" title="statement not covered" >    transform.target += '; opacity: ' + elem.styles.computed.opacity + ';'</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _updateStore (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    var container = elem.config.container</span>
+&nbsp;
+    // If this element’s container isn’t already in the store, let’s add it.
+<span class="cstat-no" title="statement not covered" >    if (container &amp;&amp; sr.store.containers.indexOf(container) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >      sr.store.containers.push(elem.config.container)</span>
+    }
+&nbsp;
+    // Update the element stored with our new element.
+<span class="cstat-no" title="statement not covered" >    sr.store.elements[elem.id] = elem</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _record (target, config, interval) {</span>
+    // Save the `reveal()` arguments that triggered this `_record()` call, so we
+    // can re-trace our steps when calling the `sync()` method.
+<span class="cstat-no" title="statement not covered" >    var record = {</span>
+      target: target,
+      config: config,
+      interval: interval
+    }
+<span class="cstat-no" title="statement not covered" >    sr.history.push(record)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _init () {</span>
+<span class="cstat-no" title="statement not covered" >    if (sr.isSupported()) {</span>
+      // Initial animate call triggers valid reveal animations on first load.
+      // Subsequent animate calls are made inside the event handler.
+<span class="cstat-no" title="statement not covered" >      _animate()</span>
+&nbsp;
+      // Then we loop through all container nodes in the store and bind event
+      // listeners to each.
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; sr.store.containers.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        sr.store.containers[i].addEventListener('scroll', _handler)</span>
+<span class="cstat-no" title="statement not covered" >        sr.store.containers[i].addEventListener('resize', _handler)</span>
+      }
+&nbsp;
+      // Let’s also do a one-time binding of window event listeners.
+<span class="cstat-no" title="statement not covered" >      if (!sr.initialized) {</span>
+<span class="cstat-no" title="statement not covered" >        window.addEventListener('scroll', _handler)</span>
+<span class="cstat-no" title="statement not covered" >        window.addEventListener('resize', _handler)</span>
+<span class="cstat-no" title="statement not covered" >        sr.initialized = true</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return sr</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _handler () {</span>
+<span class="cstat-no" title="statement not covered" >    _requestAnimationFrame(_animate)</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _setActiveSequences () {</span>
+<span class="cstat-no" title="statement not covered" >    var active</span>
+<span class="cstat-no" title="statement not covered" >    var elem</span>
+<span class="cstat-no" title="statement not covered" >    var elemId</span>
+<span class="cstat-no" title="statement not covered" >    var sequence</span>
+&nbsp;
+    // Loop through all sequences
+<span class="cstat-no" title="statement not covered" >    sr.tools.forOwn(sr.sequences, <span class="fstat-no" title="function not covered" >function (sequenceId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      sequence = sr.sequences[sequenceId]</span>
+<span class="cstat-no" title="statement not covered" >      active = false</span>
+&nbsp;
+      // For each sequenced elemenet, let’s check visibility and if
+      // any are visible, set it’s sequence to active.
+<span class="cstat-no" title="statement not covered" >      for (var i = 0; i &lt; sequence.elemIds.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >        elemId = sequence.elemIds[i]</span>
+<span class="cstat-no" title="statement not covered" >        elem = sr.store.elements[elemId]</span>
+<span class="cstat-no" title="statement not covered" >        if (_isElemVisible(elem) &amp;&amp; !active) {</span>
+<span class="cstat-no" title="statement not covered" >          active = true</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      sequence.active = active</span>
+    })
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _animate () {</span>
+<span class="cstat-no" title="statement not covered" >    var delayed</span>
+<span class="cstat-no" title="statement not covered" >    var elem</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    _setActiveSequences()</span>
+&nbsp;
+    // Loop through all elements in the store
+<span class="cstat-no" title="statement not covered" >    sr.tools.forOwn(sr.store.elements, <span class="fstat-no" title="function not covered" >function (elemId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      elem = sr.store.elements[elemId]</span>
+<span class="cstat-no" title="statement not covered" >      delayed = _shouldUseDelay(elem)</span>
+&nbsp;
+      // Let’s see if we should revealand if so,
+      // trigger the `beforeReveal` callback and
+      // determine whether or not to use delay.
+<span class="cstat-no" title="statement not covered" >      if (_shouldReveal(elem)) {</span>
+<span class="cstat-no" title="statement not covered" >        elem.config.beforeReveal(elem.domEl)</span>
+<span class="cstat-no" title="statement not covered" >        if (delayed) {</span>
+<span class="cstat-no" title="statement not covered" >          elem.domEl.setAttribute('style',</span>
+            elem.styles.inline +
+            elem.styles.transform.target +
+            elem.styles.transition.delayed
+          )
+        } else {
+<span class="cstat-no" title="statement not covered" >          elem.domEl.setAttribute('style',</span>
+            elem.styles.inline +
+            elem.styles.transform.target +
+            elem.styles.transition.instant
+          )
+        }
+&nbsp;
+        // Let’s queue the `afterReveal` callback
+        // and mark the element as seen and revealing.
+<span class="cstat-no" title="statement not covered" >        _queueCallback('reveal', elem, delayed)</span>
+<span class="cstat-no" title="statement not covered" >        elem.revealing = true</span>
+<span class="cstat-no" title="statement not covered" >        elem.seen = true</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (elem.sequence) {</span>
+<span class="cstat-no" title="statement not covered" >          _queueNextInSequence(elem, delayed)</span>
+        }
+      } else <span class="cstat-no" title="statement not covered" >if (_shouldReset(elem)) {</span>
+        //Otherwise reset our element and
+        // trigger the `beforeReset` callback.
+<span class="cstat-no" title="statement not covered" >        elem.config.beforeReset(elem.domEl)</span>
+<span class="cstat-no" title="statement not covered" >        elem.domEl.setAttribute('style',</span>
+          elem.styles.inline +
+          elem.styles.transform.initial +
+          elem.styles.transition.instant
+        )
+        // And queue the `afterReset` callback.
+<span class="cstat-no" title="statement not covered" >        _queueCallback('reset', elem)</span>
+<span class="cstat-no" title="statement not covered" >        elem.revealing = false</span>
+      }
+    })
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _queueNextInSequence (elem, delayed) {</span>
+<span class="cstat-no" title="statement not covered" >    var elapsed = 0</span>
+<span class="cstat-no" title="statement not covered" >    var delay = 0</span>
+<span class="cstat-no" title="statement not covered" >    var sequence = sr.sequences[elem.sequence.id]</span>
+&nbsp;
+    // We’re processing a sequenced element, so let's block other elements in this sequence.
+<span class="cstat-no" title="statement not covered" >    sequence.blocked = true</span>
+&nbsp;
+    // Since we’re triggering animations a part of a sequence after animations on first load,
+    // we need to check for that condition and explicitly add the delay to our timer.
+<span class="cstat-no" title="statement not covered" >    if (delayed &amp;&amp; elem.config.useDelay === 'onload') {</span>
+<span class="cstat-no" title="statement not covered" >      delay = elem.config.delay</span>
+    }
+&nbsp;
+    // If a sequence timer is already running, capture the elapsed time and clear it.
+<span class="cstat-no" title="statement not covered" >    if (elem.sequence.timer) {</span>
+<span class="cstat-no" title="statement not covered" >      elapsed = Math.abs(elem.sequence.timer.started - new Date())</span>
+<span class="cstat-no" title="statement not covered" >      window.clearTimeout(elem.sequence.timer)</span>
+    }
+&nbsp;
+    // Start a new timer.
+<span class="cstat-no" title="statement not covered" >    elem.sequence.timer = { started: new Date() }</span>
+<span class="cstat-no" title="statement not covered" >    elem.sequence.timer.clock = window.setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+      // Sequence interval has passed, so unblock the sequence and re-run the handler.
+<span class="cstat-no" title="statement not covered" >      sequence.blocked = false</span>
+<span class="cstat-no" title="statement not covered" >      elem.sequence.timer = null</span>
+<span class="cstat-no" title="statement not covered" >      _handler()</span>
+    }, Math.abs(sequence.interval) + delay - elapsed)
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _queueCallback (type, elem, delayed) {</span>
+<span class="cstat-no" title="statement not covered" >    var elapsed = 0</span>
+<span class="cstat-no" title="statement not covered" >    var duration = 0</span>
+<span class="cstat-no" title="statement not covered" >    var callback = 'after'</span>
+&nbsp;
+    // Check which callback we’re working with.
+<span class="cstat-no" title="statement not covered" >    switch (type) {</span>
+      case 'reveal':
+<span class="cstat-no" title="statement not covered" >        duration = elem.config.duration</span>
+<span class="cstat-no" title="statement not covered" >        if (delayed) {</span>
+<span class="cstat-no" title="statement not covered" >          duration += elem.config.delay</span>
+        }
+<span class="cstat-no" title="statement not covered" >        callback += 'Reveal'</span>
+<span class="cstat-no" title="statement not covered" >        break</span>
+&nbsp;
+      case 'reset':
+<span class="cstat-no" title="statement not covered" >        duration = elem.config.duration</span>
+<span class="cstat-no" title="statement not covered" >        callback += 'Reset'</span>
+<span class="cstat-no" title="statement not covered" >        break</span>
+    }
+&nbsp;
+    // If a timer is already running, capture the elapsed time and clear it.
+<span class="cstat-no" title="statement not covered" >    if (elem.timer) {</span>
+<span class="cstat-no" title="statement not covered" >      elapsed = Math.abs(elem.timer.started - new Date())</span>
+<span class="cstat-no" title="statement not covered" >      window.clearTimeout(elem.timer.clock)</span>
+    }
+&nbsp;
+    // Start a new timer.
+<span class="cstat-no" title="statement not covered" >    elem.timer = { started: new Date() }</span>
+<span class="cstat-no" title="statement not covered" >    elem.timer.clock = window.setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+      // The timer completed, so let’s fire the callback and null the timer.
+<span class="cstat-no" title="statement not covered" >      elem.config[callback](elem.domEl)</span>
+<span class="cstat-no" title="statement not covered" >      elem.timer = null</span>
+    }, duration - elapsed)
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _shouldReveal (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    if (elem.sequence) {</span>
+<span class="cstat-no" title="statement not covered" >      var sequence = sr.sequences[elem.sequence.id]</span>
+<span class="cstat-no" title="statement not covered" >      return sequence.active &amp;&amp;</span>
+        !sequence.blocked &amp;&amp;
+        !elem.revealing &amp;&amp;
+        !elem.disabled
+    }
+<span class="cstat-no" title="statement not covered" >    return _isElemVisible(elem) &amp;&amp;</span>
+      !elem.revealing &amp;&amp;
+      !elem.disabled
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _shouldUseDelay (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    var config = elem.config.useDelay</span>
+<span class="cstat-no" title="statement not covered" >    return config === 'always' ||</span>
+      (config === 'onload' &amp;&amp; !sr.initialized) ||
+      (config === 'once' &amp;&amp; !elem.seen)
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _shouldReset (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    if (elem.sequence) {</span>
+<span class="cstat-no" title="statement not covered" >      var sequence = sr.sequences[elem.sequence.id]</span>
+<span class="cstat-no" title="statement not covered" >      return !sequence.active &amp;&amp;</span>
+        elem.config.reset &amp;&amp;
+        elem.revealing &amp;&amp;
+        !elem.disabled
+    }
+<span class="cstat-no" title="statement not covered" >    return !_isElemVisible(elem) &amp;&amp;</span>
+      elem.config.reset &amp;&amp;
+      elem.revealing &amp;&amp;
+      !elem.disabled
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getContainer (container) {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      width: container.clientWidth,
+      height: container.clientHeight
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getScrolled (container) {</span>
+    // Return the container scroll values, plus the its offset.
+<span class="cstat-no" title="statement not covered" >    if (container &amp;&amp; container !== window.document.documentElement) {</span>
+<span class="cstat-no" title="statement not covered" >      var offset = _getOffset(container)</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        x: container.scrollLeft + offset.left,
+        y: container.scrollTop + offset.top
+      }
+    } else {
+      // Otherwise, default to the window object’s scroll values.
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        x: window.pageXOffset,
+        y: window.pageYOffset
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _getOffset (domEl) {</span>
+<span class="cstat-no" title="statement not covered" >    var offsetTop = 0</span>
+<span class="cstat-no" title="statement not covered" >    var offsetLeft = 0</span>
+&nbsp;
+      // Grab the element’s dimensions.
+<span class="cstat-no" title="statement not covered" >    var offsetHeight = domEl.offsetHeight</span>
+<span class="cstat-no" title="statement not covered" >    var offsetWidth = domEl.offsetWidth</span>
+&nbsp;
+    // Now calculate the distance between the element and its parent, then
+    // again for the parent to its parent, and again etc... until we have the
+    // total distance of the element to the document’s top and left origin.
+<span class="cstat-no" title="statement not covered" >    do {</span>
+<span class="cstat-no" title="statement not covered" >      if (!isNaN(domEl.offsetTop)) {</span>
+<span class="cstat-no" title="statement not covered" >        offsetTop += domEl.offsetTop</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (!isNaN(domEl.offsetLeft)) {</span>
+<span class="cstat-no" title="statement not covered" >        offsetLeft += domEl.offsetLeft</span>
+      }
+<span class="cstat-no" title="statement not covered" >      domEl = domEl.offsetParent</span>
+    } while (domEl)
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      top: offsetTop,
+      left: offsetLeft,
+      height: offsetHeight,
+      width: offsetWidth
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function _isElemVisible (elem) {</span>
+<span class="cstat-no" title="statement not covered" >    var offset = _getOffset(elem.domEl)</span>
+<span class="cstat-no" title="statement not covered" >    var container = _getContainer(elem.config.container)</span>
+<span class="cstat-no" title="statement not covered" >    var scrolled = _getScrolled(elem.config.container)</span>
+<span class="cstat-no" title="statement not covered" >    var vF = elem.config.viewFactor</span>
+&nbsp;
+      // Define the element geometry.
+<span class="cstat-no" title="statement not covered" >    var elemHeight = offset.height</span>
+<span class="cstat-no" title="statement not covered" >    var elemWidth = offset.width</span>
+<span class="cstat-no" title="statement not covered" >    var elemTop = offset.top</span>
+<span class="cstat-no" title="statement not covered" >    var elemLeft = offset.left</span>
+<span class="cstat-no" title="statement not covered" >    var elemBottom = elemTop + elemHeight</span>
+<span class="cstat-no" title="statement not covered" >    var elemRight = elemLeft + elemWidth</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return confirmBounds() || isPositionFixed()</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function confirmBounds () {</span>
+      // Define the element’s functional boundaries using its view factor.
+<span class="cstat-no" title="statement not covered" >      var top = elemTop + elemHeight * vF</span>
+<span class="cstat-no" title="statement not covered" >      var left = elemLeft + elemWidth * vF</span>
+<span class="cstat-no" title="statement not covered" >      var bottom = elemBottom - elemHeight * vF</span>
+<span class="cstat-no" title="statement not covered" >      var right = elemRight - elemWidth * vF</span>
+&nbsp;
+      // Define the container functional boundaries using its view offset.
+<span class="cstat-no" title="statement not covered" >      var viewTop = scrolled.y + elem.config.viewOffset.top</span>
+<span class="cstat-no" title="statement not covered" >      var viewLeft = scrolled.x + elem.config.viewOffset.left</span>
+<span class="cstat-no" title="statement not covered" >      var viewBottom = scrolled.y - elem.config.viewOffset.bottom + container.height</span>
+<span class="cstat-no" title="statement not covered" >      var viewRight = scrolled.x - elem.config.viewOffset.right + container.width</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return top &lt; viewBottom &amp;&amp;</span>
+        bottom &gt; viewTop &amp;&amp;
+        left &gt; viewLeft &amp;&amp;
+        right &lt; viewRight
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function isPositionFixed () {</span>
+<span class="cstat-no" title="statement not covered" >      return (window.getComputedStyle(elem.domEl).position === 'fixed')</span>
+    }
+  }
+&nbsp;
+  /**
+   * Utilities
+   * ---------
+   */
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function Tools () {</span>}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.isObject = <span class="fstat-no" title="function not covered" >function (object) {</span></span>
+<span class="cstat-no" title="statement not covered" >    return object !== null &amp;&amp; typeof object === 'object' &amp;&amp; object.constructor === Object</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.isNode = <span class="fstat-no" title="function not covered" >function (object) {</span></span>
+<span class="cstat-no" title="statement not covered" >    return typeof window.Node === 'object'</span>
+      ? object instanceof window.Node
+      : object &amp;&amp; typeof object === 'object' &amp;&amp;
+        typeof object.nodeType === 'number' &amp;&amp;
+        typeof object.nodeName === 'string'
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.isNodeList = <span class="fstat-no" title="function not covered" >function (object) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var prototypeToString = Object.prototype.toString.call(object)</span>
+<span class="cstat-no" title="statement not covered" >    var regex = /^\[object (HTMLCollection|NodeList|Object)\]$/</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return typeof window.NodeList === 'object'</span>
+      ? object instanceof window.NodeList
+      : object &amp;&amp; typeof object === 'object' &amp;&amp;
+        regex.test(prototypeToString) &amp;&amp;
+        typeof object.length === 'number' &amp;&amp;
+        (object.length === 0 || this.isNode(object[0]))
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.forOwn = <span class="fstat-no" title="function not covered" >function (object, callback) {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!this.isObject(object)) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new TypeError('Expected "object", but received "' + typeof object + '".')</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      for (var property in object) {</span>
+<span class="cstat-no" title="statement not covered" >        if (object.hasOwnProperty(property)) {</span>
+<span class="cstat-no" title="statement not covered" >          callback(property)</span>
+        }
+      }
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.extend = <span class="fstat-no" title="function not covered" >function (target, source) {</span></span>
+<span class="cstat-no" title="statement not covered" >    this.forOwn(source, <span class="fstat-no" title="function not covered" >function (property) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (this.isObject(source[property])) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!target[property] || !this.isObject(target[property])) {</span>
+<span class="cstat-no" title="statement not covered" >          target[property] = {}</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.extend(target[property], source[property])</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        target[property] = source[property]</span>
+      }
+    }.bind(this))
+<span class="cstat-no" title="statement not covered" >    return target</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.extendClone = <span class="fstat-no" title="function not covered" >function (target, source) {</span></span>
+<span class="cstat-no" title="statement not covered" >    return this.extend(this.extend({}, target), source)</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  Tools.prototype.isMobile = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)</span>
+  }
+&nbsp;
+  /**
+   * Polyfills
+   * --------
+   */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  _requestAnimationFrame = window.requestAnimationFrame ||</span>
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+<span class="fstat-no" title="function not covered" >    function (callback) {</span>
+<span class="cstat-no" title="statement not covered" >      window.setTimeout(callback, 1000 / 60)</span>
+    }
+&nbsp;
+  /**
+   * Module Wrapper
+   * --------------
+   */
+<span class="cstat-no" title="statement not covered" >  if (typeof define === 'function' &amp;&amp; typeof define.amd === 'object' &amp;&amp; define.amd) {</span>
+<span class="cstat-no" title="statement not covered" >    define(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      return ScrollReveal</span>
+    })
+  } else <span class="cstat-no" title="statement not covered" >if (typeof module !== 'undefined' &amp;&amp; module.exports) {</span>
+<span class="cstat-no" title="statement not covered" >    module.exports = ScrollReveal</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    window.ScrollReveal = ScrollReveal</span>
+  }
+})();
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sun Apr 23 2017 13:35:28 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
